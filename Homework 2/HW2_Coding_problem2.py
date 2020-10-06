@@ -19,6 +19,12 @@ for inputs in dates_inputs:
         year = lists[2]
         d, comma = day.split(',')
 
-
+    for months in range(12):
+        if inputs.find(Listings[months]) >=0:
+            month_number = str(months + 1)
+            output_list = month_number + "/" + day + "/" + year
+            dates_outputs.write(output_list)
+            dates_outputs.write("\n")
+            
 dates_inputs.close()
 dates_outputs.close()
