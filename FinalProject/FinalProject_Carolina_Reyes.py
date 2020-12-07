@@ -82,3 +82,21 @@ with open('ServiceDatesList.csv', 'r') as file3:
             damaged = items[item]['damaged']
             if damaged:
                 file.write('{},{},{},{},{}\n'.format(id, manufact_name, item_type, price, service_date))
+      
+    I_types = []
+    for item in items:
+        item_type = items[item]['item_type']
+        if item_type not in I_types:
+            I_types.append(item_type)
+    for type in I_types:
+        keys = sorted(items.keys())
+        with open(type.capitalize() + 'Inventory.csv', 'w') as typeinventory:
+            for item in keys:
+                id = item
+                manufact_name = items[item]['manufacturer_name']
+                price = items[item]['price']
+                service_date = items[item]['service_date']
+                damaged = items[item]['damaged']
+                item_type = items[item]['item_type']
+                if type == item_type:
+                    typeinventory.write('{},{},{},{},{}\n'.format(id, manufact_name, price, service_date, damaged))
